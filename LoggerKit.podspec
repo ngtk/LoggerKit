@@ -19,7 +19,7 @@ LoggerKit is simple logging framework with multiple log levels and destinations.
   s.author           = { 'Kento Nagata' => 'ngtknt@me.com' }
   s.source           = { :git => 'https://github.com/ngtk/LoggerKit.git', :tag => s.version.to_s }
 
-  s.swift_version = '3.2'
+  s.swift_version = '4.0'
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'Sources/LoggerKit/*.swift'
