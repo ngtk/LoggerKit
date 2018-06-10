@@ -35,7 +35,7 @@ script:
     -configuration Debug
     -enableCodeCoverage YES
     CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
-  - slather coverage --cobertura-xml --scheme LoggerKit-Package --output-directory ./  LoggerKit.xcodeproj
+  - slather coverage --cobertura-xml --scheme $SCHEME --output-directory ./ $PROJECT
   - pod lib lint
 
 after_script:
