@@ -20,7 +20,7 @@ logger.error("Something went wrong, fix this")
 
 ## Customize
 You can register custom destinations and log format.
-Log format is belongs to destination. So you can set format by each destination.
+Log format belongs to destination. So you can set format by each destination.
 
 ```swift
 // Create your log formatter
