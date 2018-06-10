@@ -36,7 +36,8 @@ script:
     -configuration "$CONFIGURATION"
     -enableCodeCoverage YES
     CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
-  - ls -la /Users/ngtk/Library/Developer/Xcode/DerivedData/LoggerKit-*/Build/Products/Debug/LoggerKit*
+  - brew install tree
+  - tree /Users/ngtk/Library/Developer/Xcode/DerivedData/LoggerKit-*/
   - slather coverage --cobertura-xml --scheme $SCHEME --configuration $CONFIGURATION --output-directory ./ $PROJECT
   - pod lib lint
 
