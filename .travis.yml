@@ -9,6 +9,7 @@ env:
     - MACOS_SDK="macosx10.13"
     - TVOS_SDK="appletvsimulator11.0"
     - FRAMEWORK="LoggerKit"
+    - CONFIGURATION="Debug"
     - CC_TEST_REPORTER_ID="fe0aa1e08edda399eadfff3386c2fc83fe3faba677d676a66e987649494d0a30"
   matrix:
     - SDK="$IOS_SDK"    DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=11.0"
@@ -32,11 +33,11 @@ script:
     -scheme "$SCHEME"
     -sdk "$SDK"
     -destination "$DESTINATION"
-    -configuration Debug
+    -configuration "CONFIGURATION"
     -enableCodeCoverage YES
     CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
   - ls
-  - slather coverage --cobertura-xml --scheme $SCHEME --output-directory ./ $PROJECT
+  - slather coverage --cobertura-xml --scheme $SCHEME --configuration $CONFIGURATION --output-directory ./ $PROJECT
   - pod lib lint
 
 after_script:
