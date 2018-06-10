@@ -1,4 +1,4 @@
-# LoggerKit [![Build Status](https://travis-ci.com/ngtk/LoggerKit.svg?branch=master)](https://travis-ci.com/ngtk/LoggerKit) [![Maintainability](https://api.codeclimate.com/v1/badges/a87a4b6a431ee7a4d95c/maintainability)](https://codeclimate.com/github/ngtk/LoggerKit/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/a87a4b6a431ee7a4d95c/test_coverage)](https://codeclimate.com/github/ngtk/LoggerKit/test_coverage)
+# LoggerKit [![Pod version](https://badge.fury.io/co/LoggerKit.svg)](https://badge.fury.io/co/LoggerKit) [![Build Status](https://travis-ci.com/ngtk/LoggerKit.svg?branch=master)](https://travis-ci.com/ngtk/LoggerKit) [![Maintainability](https://api.codeclimate.com/v1/badges/a87a4b6a431ee7a4d95c/maintainability)](https://codeclimate.com/github/ngtk/LoggerKit/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/a87a4b6a431ee7a4d95c/test_coverage)](https://codeclimate.com/github/ngtk/LoggerKit/test_coverage)
 🤖 LoggerKit is logging framework that provides a format, log levels and multiple output destinations.
 
 ## Usage
