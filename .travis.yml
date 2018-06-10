@@ -36,7 +36,7 @@ script:
     -configuration "$CONFIGURATION"
     -enableCodeCoverage YES
     CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
-  - ls
+  - ls /Users/travis/Library/Developer/Xcode/DerivedData/LoggerKit-*/Build/ProfileData/*
   - slather coverage --cobertura-xml --scheme $SCHEME --configuration $CONFIGURATION --output-directory ./ $PROJECT
   - pod lib lint
 
