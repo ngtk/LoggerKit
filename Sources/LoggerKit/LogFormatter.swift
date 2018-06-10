@@ -9,6 +9,8 @@ public class DefaultLogFormatter: LogFormatterProtocol {
         return "\(formatedTime()) [\(level.rawValue.uppercased())] \(message)"
     }
 
+    public init() {}
+
     func formatedTime() -> String {
         let date = Date()
         let formatter = DateFormatter()
