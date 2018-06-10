@@ -7,7 +7,7 @@ final class DefaultLogFormatterTests: XCTestCase {
         let formatted = formatter.format(message: "some message", level: .info, context: LogContextMock())
 
         XCTAssertTrue(
-            match(target: formatted, regrexPattern: "\\A\\d\\d:\\d\\d:\\d\\d\\+\\d\\d:\\d\\d \\[INFO\\] some message\\z")
+            match(target: formatted, regrexPattern: "\\A\\d\\d:\\d\\d:\\d\\d \\[INFO\\] some message\\z")
         )
     }
 }

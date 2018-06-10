@@ -14,7 +14,7 @@ public class DefaultLogFormatter: LogFormatterProtocol {
     func formatedTime() -> String {
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ssZZZZZ"
+        formatter.dateFormat = "HH:mm:ss"
         return formatter.string(from: date)
     }
 }
