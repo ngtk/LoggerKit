@@ -129,3 +129,6 @@ Temporary Items
 
 # Custom
 LoggerKit.xcodeproj
+
+# Cobertura
+cobertura.xml

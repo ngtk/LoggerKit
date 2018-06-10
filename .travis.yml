@@ -9,8 +9,10 @@ env:
     - MACOS_SDK="macosx10.13"
     - TVOS_SDK="appletvsimulator11.0"
     - FRAMEWORK="LoggerKit"
+    - CONFIGURATION="Debug"
+    - CC_TEST_REPORTER_ID="fe0aa1e08edda399eadfff3386c2fc83fe3faba677d676a66e987649494d0a30"
   matrix:
-    - SDK="$IOS_SDK"      DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=11.0"
+    - SDK="$IOS_SDK"    DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=11.0"
 
 install:
   - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh)"
@@ -20,6 +22,10 @@ before_script:
   - set -o pipefail
   - pod repo update
   - swift package generate-xcodeproj
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+  - gem i slather
 
 script:
   - xcodebuild clean build test
@@ -27,7 +33,11 @@ script:
     -scheme "$SCHEME"
     -sdk "$SDK"
     -destination "$DESTINATION"
-    -configuration Debug
+    -configuration "$CONFIGURATION"
     -enableCodeCoverage YES
     CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+  - slather coverage --cobertura-xml --scheme $SCHEME --configuration Debug-iphonesimulator --output-directory ./ $PROJECT
   - pod lib lint
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
