@@ -9,6 +9,7 @@ env:
     - MACOS_SDK="macosx10.13"
     - TVOS_SDK="appletvsimulator11.0"
     - FRAMEWORK="LoggerKit"
+    - CC_TEST_REPORTER_ID=fe0aa1e08edda399eadfff3386c2fc83fe3faba677d676a66e987649494d0a30<Paste>
   matrix:
     - SDK="$IOS_SDK"      DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=11.0"
 
@@ -20,6 +21,9 @@ before_script:
   - set -o pipefail
   - pod repo update
   - swift package generate-xcodeproj
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 script:
   - xcodebuild clean build test
@@ -30,4 +34,8 @@ script:
     -configuration Debug
     -enableCodeCoverage YES
     CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+  - slather coverage --cobertura-xml --scheme LoggerKit-Package --output-directory ./  LoggerKit.xcodeproj
   - pod lib lint
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
