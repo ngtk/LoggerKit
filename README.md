@@ -18,6 +18,32 @@ logger.warning("Not expected, but not error")
 logger.error("Something went wrong, fix this")
 ```
 
+## Customize
+You can register custom destinations and log format.
+Log format is belongs to destination. So you can set format by each destination.
+
+```swift
+// Create your log formatter
+final class CustomLogFormatter: LogFormatterProtocol {
+    func format(message: Any, level: LogLevel, context: LogContextProtocol) -> String {
+        // Format message here
+    }
+}
+
+// Create you log destination
+final class CustomLogDestination: LogDestinationProtocol {
+    var formatter: LogFormatterProtocol
+
+    init(formatter: LogFormatterProtocol = CustomLogFormatter()) {
+        self.formatter = formatter
+    }
+
+    func write(_ message: Any, level: LogLevel, context: LogContextProtocol) {
+        let formatted = formatter.format(message, level: level, context: context)
+        // You can write here how you want
+    }
+}
+```
 
 ## Installation
 Using [CocoaPods](https://cocoapods.org/):
