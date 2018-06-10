@@ -18,13 +18,13 @@ install:
   - swift --version
 
 before_script:
+  - set -o pipefail
+  - pod repo update
+  - swift package generate-xcodeproj
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
   - gem i slather
-  - set -o pipefail
-  - pod repo update
-  - swift package generate-xcodeproj
 
 script:
   - xcodebuild clean build test
