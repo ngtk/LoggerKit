@@ -36,9 +36,7 @@ script:
     -configuration "$CONFIGURATION"
     -enableCodeCoverage YES
     CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
-  - brew install tree
-  - tree /Users/travis/Library/Developer/Xcode/DerivedData/LoggerKit-*/
-  - slather coverage --cobertura-xml --scheme $SCHEME --configuration $CONFIGURATION --output-directory ./ $PROJECT
+  - slather coverage --cobertura-xml --scheme $SCHEME --configuration Debug-iphonesimulator --output-directory ./ $PROJECT
   - pod lib lint
 
 after_script:
