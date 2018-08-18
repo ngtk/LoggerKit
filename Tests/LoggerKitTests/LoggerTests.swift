@@ -21,49 +21,57 @@ final class LoggerTests: XCTestCase {
 
 final class LoggerProtocolTests: XCTestCase {
     final class SomeLogger: LoggerProtocol {
-        typealias DidSendClosure = ((_ level: LogLevel, _ message: Any, _ context: LogContextProtocol) -> Void)
+        typealias SendClosure = ((_ level: LogLevel, _ message: Any, _ context: LogContextProtocol) -> Void)
 
-        let didSend: DidSendClosure
+        let sendClosure: SendClosure
 
-        init(didSend: @escaping DidSendClosure) {
-            self.didSend = didSend
+        init(
+            sendClosure: @escaping SendClosure
+        ){
+            self.sendClosure = sendClosure
         }
 
         func send(level: LogLevel, message: Any, context: LogContextProtocol) {
-            didSend(level, message, context)
+            sendClosure(level, message, context)
+        }
+
+        func willSend(level: LogLevel, message: Any, context: LogContextProtocol) {
+        }
+
+        func didSend(level: LogLevel, message: Any, context: LogContextProtocol) {
         }
     }
 
     func test_debug() {
-        let someLogger = SomeLogger(didSend: { level, message, _ in
+        let someLogger = SomeLogger(sendClosure: { level, message, _ in
             XCTAssertTrue(level == .debug && "\(message)" == "message for debug")
         })
         someLogger.debug("message for debug")
     }
     
     func test_verbose() {
-        let someLogger = SomeLogger(didSend: { level, message, _ in
+        let someLogger = SomeLogger(sendClosure: { level, message, _ in
             XCTAssertTrue(level == .verbose && "\(message)" == "message for verbose")
         })
         someLogger.verbose("message for verbose")
     }
 
     func test_info() {
-        let someLogger = SomeLogger(didSend: { level, message, _ in
+        let someLogger = SomeLogger(sendClosure: { level, message, _ in
             XCTAssertTrue(level == .info && "\(message)" == "message for info")
         })
         someLogger.info("message for info")
     }
 
     func test_warning() {
-        let someLogger = SomeLogger(didSend: { level, message, _ in
+        let someLogger = SomeLogger(sendClosure: { level, message, _ in
             XCTAssertTrue(level == .warning && "\(message)" == "message for warning")
         })
         someLogger.warning("message for warning")
     }
 
     func test_error() {
-        let someLogger = SomeLogger(didSend: { level, message, _ in
+        let someLogger = SomeLogger(sendClosure: { level, message, _ in
             XCTAssertTrue(level == .error && "\(message)" == "message for error")
         })
         someLogger.error("message for error")

@@ -1,5 +1,7 @@
 public protocol LoggerProtocol {
     func send(level: LogLevel, message: Any, context: LogContextProtocol)
+    func willSend(level: LogLevel, message: Any, context: LogContextProtocol)
+    func didSend(level: LogLevel, message: Any, context: LogContextProtocol)
 }
 
 extension LoggerProtocol {
@@ -54,15 +56,25 @@ extension LoggerProtocol {
     }
 }
 
-public class Logger: LoggerProtocol {
+open class Logger: LoggerProtocol {
     var destinations = [LogDestinationProtocol]()
 
     public init() {}
 
     public func send(level: LogLevel, message: Any, context: LogContextProtocol) {
+        willSend(level: level, message: message, context: context)
         destinations.forEach { logger in
             logger.write(message, level: level, context: context)
         }
+        didSend(level: level, message: message, context: context)
+    }
+
+    // Override point.
+    open func willSend(level: LogLevel, message: Any, context: LogContextProtocol) {
+    }
+
+    // Override point.
+    open func didSend(level: LogLevel, message: Any, context: LogContextProtocol) {
     }
 
     public func register(destination: LogDestinationProtocol) {
