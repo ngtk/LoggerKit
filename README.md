@@ -61,7 +61,7 @@ $ swift package generate-xcodeproj
 
 ### Release
 ```
-$ edit NAME.podspec
+$ edit LoggerKit.podspec
 # set the new version to 0.0.1
 # set the new tag to 0.0.1
 $ pod lib lint
