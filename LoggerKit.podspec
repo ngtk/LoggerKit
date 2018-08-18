@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LoggerKit'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'Simple logging framework.'
   s.description      = <<-DESC
 LoggerKit is simple logging framework with multiple log levels and destinations.
