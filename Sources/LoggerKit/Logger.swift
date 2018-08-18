@@ -6,7 +6,7 @@ public protocol LoggerProtocol {
 
 extension LoggerProtocol {
     public func debug(
-        _ message: Any,
+        _ message: Any...,
         function: String = #function,
         file: String = #file,
         line: Int = #line
@@ -16,7 +16,7 @@ extension LoggerProtocol {
     }
 
     public func verbose(
-        _ message: Any,
+        _ message: Any...,
         function: String = #function,
         file: String = #file,
         line: Int = #line
@@ -26,7 +26,7 @@ extension LoggerProtocol {
     }
 
     public func info(
-        _ message: Any,
+        _ message: Any...,
         function: String = #function,
         file: String = #file,
         line: Int = #line
@@ -36,7 +36,7 @@ extension LoggerProtocol {
     }
 
     public func warning(
-        _ message: Any,
+        _ message: Any...,
         function: String = #function,
         file: String = #file,
         line: Int = #line
@@ -46,7 +46,7 @@ extension LoggerProtocol {
     }
 
     public func error(
-        _ message: Any,
+        _ message: Any...,
         function: String = #function,
         file: String = #file,
         line: Int = #line

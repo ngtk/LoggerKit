@@ -44,37 +44,43 @@ final class LoggerProtocolTests: XCTestCase {
 
     func test_debug() {
         let someLogger = SomeLogger(sendClosure: { level, message, _ in
-            XCTAssertTrue(level == .debug && "\(message)" == "message for debug")
+            XCTAssertTrue(level == .debug && String(message: message) == "message for debug")
         })
         someLogger.debug("message for debug")
     }
     
     func test_verbose() {
         let someLogger = SomeLogger(sendClosure: { level, message, _ in
-            XCTAssertTrue(level == .verbose && "\(message)" == "message for verbose")
+            XCTAssertTrue(level == .verbose && String(message: message) == "message for verbose")
         })
         someLogger.verbose("message for verbose")
     }
 
     func test_info() {
         let someLogger = SomeLogger(sendClosure: { level, message, _ in
-            XCTAssertTrue(level == .info && "\(message)" == "message for info")
+            XCTAssertTrue(level == .info && String(message: message) == "message for info")
         })
-        someLogger.info("message for info")
+        someLogger.info("message for info", "")
     }
 
     func test_warning() {
         let someLogger = SomeLogger(sendClosure: { level, message, _ in
-            XCTAssertTrue(level == .warning && "\(message)" == "message for warning")
+            XCTAssertTrue(level == .warning && String(message: message) == "message for warning")
         })
         someLogger.warning("message for warning")
     }
 
     func test_error() {
         let someLogger = SomeLogger(sendClosure: { level, message, _ in
-            XCTAssertTrue(level == .error && "\(message)" == "message for error")
+            XCTAssertTrue(level == .error && String(message: message) == "message for error")
         })
         someLogger.error("message for error")
     }
+}
 
+private extension String {
+    init?(message: Any) {
+        guard let joined = (message as? Array<String>)?.joined() else { return nil }
+        self.init(joined)
+    }
 }
