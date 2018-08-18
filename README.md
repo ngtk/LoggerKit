@@ -69,6 +69,9 @@ $ pod lib lint
 $ git add -A && git commit -m "Release 0.0.1."
 $ git tag '0.0.1'
 $ git push --tags
+
+$ pod trunk push LoggerKit.podspec
 ```
 
 [CocoaPods Guides](https://guides.cocoapods.org/making/making-a-cocoapod.html#release)
+
