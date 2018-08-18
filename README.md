@@ -58,3 +58,17 @@ In order to create Xcode project, run:
 ```
 $ swift package generate-xcodeproj
 ```
+
+### Release
+```
+$ edit NAME.podspec
+# set the new version to 0.0.1
+# set the new tag to 0.0.1
+$ pod lib lint
+
+$ git add -A && git commit -m "Release 0.0.1."
+$ git tag '0.0.1'
+$ git push --tags
+```
+
+[CocoaPods Guides](https://guides.cocoapods.org/making/making-a-cocoapod.html#release)
