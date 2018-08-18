@@ -1,0 +1,13 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    podspec_bump (0.1.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  podspec_bump
+
+BUNDLED WITH
+   1.16.2
